@@ -217,12 +217,13 @@ class HealthPlugin(val activity: Activity, val channel: MethodChannel) : MethodC
         val optionsToRegister = callToHealthTypes(call)
         mResult = result
 
+        val googleSignInAccount = GoogleSignIn.getLastSignedInAccount(activity)
         /// Not granted? Ask for permission
-        if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(activity), fitnessOptions)) {
+        if (!GoogleSignIn.hasPermissions(googleSignInAccount, fitnessOptions)) {
             GoogleSignIn.requestPermissions(
                     activity,
                     GOOGLE_FIT_PERMISSIONS_REQUEST_CODE,
-                    GoogleSignIn.getLastSignedInAccount(activity),
+                    googleSignInAccount,
                     optionsToRegister)
         }
         /// Permission already granted
