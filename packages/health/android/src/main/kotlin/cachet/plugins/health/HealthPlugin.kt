@@ -32,7 +32,6 @@ class HealthPlugin(val activity: Activity, val channel: MethodChannel) : MethodC
     private var WEIGHT = "WEIGHT"
     private var STEPS = "STEPS"
     private var ACTIVE_ENERGY_BURNED = "ACTIVE_ENERGY_BURNED"
-    private var AGGREGATE_ENERGY_BURNED = "AGGREGATE_ENERGY_BURNED"
     private var HEART_RATE = "HEART_RATE"
     private var BODY_TEMPERATURE = "BODY_TEMPERATURE"
     private var BLOOD_PRESSURE_SYSTOLIC = "BLOOD_PRESSURE_SYSTOLIC"
@@ -61,7 +60,6 @@ class HealthPlugin(val activity: Activity, val channel: MethodChannel) : MethodC
             .addDataType(keyToHealthDataType(WEIGHT), FitnessOptions.ACCESS_READ)
             .addDataType(keyToHealthDataType(STEPS), FitnessOptions.ACCESS_READ)
             .addDataType(keyToHealthDataType(ACTIVE_ENERGY_BURNED), FitnessOptions.ACCESS_READ)
-            .addDataType(keyToHealthDataType(AGGREGATE_ENERGY_BURNED), FitnessOptions.ACCESS_READ)
             .addDataType(keyToHealthDataType(HEART_RATE), FitnessOptions.ACCESS_READ)
             .addDataType(keyToHealthDataType(BODY_TEMPERATURE), FitnessOptions.ACCESS_READ)
             .addDataType(keyToHealthDataType(BLOOD_PRESSURE_SYSTOLIC), FitnessOptions.ACCESS_READ)
@@ -111,7 +109,6 @@ class HealthPlugin(val activity: Activity, val channel: MethodChannel) : MethodC
             WEIGHT -> DataType.TYPE_WEIGHT
             STEPS -> DataType.TYPE_STEP_COUNT_DELTA
             ACTIVE_ENERGY_BURNED -> DataType.TYPE_CALORIES_EXPENDED
-            AGGREGATE_ENERGY_BURNED -> DataType.AGGREGATE_CALORIES_EXPENDED
             HEART_RATE -> DataType.TYPE_HEART_RATE_BPM
             BODY_TEMPERATURE -> HealthDataTypes.TYPE_BODY_TEMPERATURE
             BLOOD_PRESSURE_SYSTOLIC -> HealthDataTypes.TYPE_BLOOD_PRESSURE

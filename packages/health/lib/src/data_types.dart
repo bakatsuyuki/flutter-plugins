@@ -4,7 +4,6 @@ part of health;
 enum HealthDataType {
   ACTIVE_ENERGY_BURNED,
   BASAL_ENERGY_BURNED,
-  AGGREGATE_ENERGY_BURNED,
   BLOOD_GLUCOSE,
   BLOOD_OXYGEN,
   BLOOD_PRESSURE_DIASTOLIC,
@@ -72,7 +71,6 @@ const List<HealthDataType> _dataTypeKeysIOS = [
 /// List of data types available on Android
 const List<HealthDataType> _dataTypeKeysAndroid = [
   HealthDataType.ACTIVE_ENERGY_BURNED,
-  HealthDataType.AGGREGATE_ENERGY_BURNED,
   HealthDataType.BLOOD_GLUCOSE,
   HealthDataType.BLOOD_OXYGEN,
   HealthDataType.BLOOD_PRESSURE_DIASTOLIC,
@@ -92,7 +90,6 @@ const List<HealthDataType> _dataTypeKeysAndroid = [
 /// Map a [HealthDataType] to a [HealthDataUnit].
 const Map<HealthDataType, HealthDataUnit> _dataTypeToUnit = {
   HealthDataType.ACTIVE_ENERGY_BURNED: HealthDataUnit.CALORIES,
-  HealthDataType.AGGREGATE_ENERGY_BURNED: HealthDataUnit.CALORIES,
   HealthDataType.BASAL_ENERGY_BURNED: HealthDataUnit.CALORIES,
   HealthDataType.BLOOD_GLUCOSE: HealthDataUnit.MILLIGRAM_PER_DECILITER,
   HealthDataType.BLOOD_OXYGEN: HealthDataUnit.PERCENTAGE,
