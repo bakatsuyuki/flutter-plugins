@@ -175,11 +175,20 @@ class HealthPlugin(val activity: Activity, val channel: MethodChannel) : MethodC
                 val fitnessOptions = FitnessOptions.builder().addDataType(dataType).build()
                 val googleSignInAccount = GoogleSignIn.getAccountForExtension(activity.applicationContext, fitnessOptions)
 
-                val response = Fitness.getHistoryClient(activity.applicationContext, googleSignInAccount)
-                        .readData(DataReadRequest.Builder()
-                                .read(dataType)
-                                .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
-                                .build())
+                val response = if (dataType == DataType.TYPE_CALORIES_EXPENDED) {
+                    Fitness.getHistoryClient(activity.applicationContext, googleSignInAccount)
+                            .readData(DataReadRequest.Builder()
+                                    .aggregate(dataType, DataType.AGGREGATE_CALORIES_EXPENDED)
+                                    .bucketByActivitySegment(1, TimeUnit.MILLISECONDS)
+                                    .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
+                                    .build())
+                } else {
+                    Fitness.getHistoryClient(activity.applicationContext, googleSignInAccount)
+                            .readData(DataReadRequest.Builder()
+                                    .read(dataType)
+                                    .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
+                                    .build())
+                }
 
                 /// Fetch all data points for the specified DataType
                 val dataPoints = Tasks.await<DataReadResponse>(response).getDataSet(dataType)
